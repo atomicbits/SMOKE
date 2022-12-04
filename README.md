@@ -1,7 +1,18 @@
 # Notes
 
 The code doesn't compile on CUDA 11.6 and torch 1.13.0. The dcn layers that are used are in c++ code and don't compile. 
-Looking at https://github.com/3846chs/DCNv2 to find the fix. 
+Looking at https://github.com/3846chs/DCNv2 to find the fix. See pull request https://github.com/CharlesShang/DCNv2/pull/134 
+But this doesn't solve it yet because of the THC library.
+Now looking at https://discuss.pytorch.org/t/question-about-thc-thc-h/147145/11 
+Better: https://github.com/CharlesShang/DCNv2/pull/92 
+
+Seems to work: build a docker based on torch 1.7 and CUDA 11.1 ==> we worked with these versions in our Dockerfile.
+first do:
+`python setup.py build develop`
+then
+`python tools/plain_train_net.py --eval-only --config-file "configs/smoke_gn_vector.yaml"`
+This command will first download the model weights into `/home/appuser/.torch/models/dla34-ba72cf86.pth` (and then it will fail unless you downloaded and installed the kitty dataset).
+
 
 
 # SMOKE: Single-Stage Monocular 3D Object Detection via Keypoint Estimation

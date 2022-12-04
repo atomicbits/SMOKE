@@ -1,5 +1,5 @@
-ARG PYTORCH="1.13.0"
-ARG CUDA="11.6"
+ARG PYTORCH="1.7.0"
+ARG CUDA="11.0"
 ARG CUDNN="8"
 
 FROM pytorch/pytorch:${PYTORCH}-cuda${CUDA}-cudnn${CUDNN}-devel
@@ -47,6 +47,11 @@ WORKDIR /work
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
+# below is a hack to get things working... 
+# it makes sure that the command 
+# `python setup.py build develop`
+# can write the resulting library in that folder somewhere 
+RUN sudo chmod -R a+w /opt/conda/lib/python3.8  
 
 # CMD ["bash"]
 CMD ["jupyter", "notebook", "--port=8888", "--ip=0.0.0.0", "--allow-root"]

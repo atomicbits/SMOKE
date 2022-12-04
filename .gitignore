@@ -7,3 +7,6 @@
 .idea
 __pycache__
 csrc_tmp
+
+models/*
+!models/README*.*

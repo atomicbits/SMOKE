@@ -38,6 +38,7 @@ def get_extensions():
             "-D__CUDA_NO_HALF_OPERATORS__", # https://github.com/pytorch/pytorch/blob/master/cmake/Dependencies.cmake#L1117
             "-D__CUDA_NO_HALF_CONVERSIONS__",
             "-D__CUDA_NO_HALF2_OPERATORS__",
+            "--disable-warnings", # Peter: I had to add this to compile the dcn layer, but we should fix the problem if we keep this code! 
         ]
     else:
         raise NotImplementedError("cuda is not available")

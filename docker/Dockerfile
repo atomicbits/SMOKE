@@ -48,5 +48,5 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 
-CMD ["bash"]
-#CMD ["jupyter", "notebook", "--port=8888", "--ip=0.0.0.0", "--allow-root"]
+# CMD ["bash"]
+CMD ["jupyter", "notebook", "--port=8888", "--ip=0.0.0.0", "--allow-root"]

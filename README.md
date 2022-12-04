@@ -1,3 +1,9 @@
+# Notes
+
+The code doesn't compile on CUDA 11.6 and torch 1.13.0. The dcn layers that are used are in c++ code and don't compile. 
+Looking at https://github.com/3846chs/DCNv2 to find the fix. 
+
+
 # SMOKE: Single-Stage Monocular 3D Object Detection via Keypoint Estimation
 
 <img align="center" src="figures/animation.gif" width="750">

@@ -21,10 +21,10 @@
 # seaborn>=0.11.0
 
 # Export --------------------------------------
-onnx>=1.12.0  # ONNX export
-onnx-simplifier>=0.4.10  # ONNX simplifier
-nvidia-pyindex  # TensorRT export
-nvidia-tensorrt  # TensorRT export
+# onnx>=1.12.0  # ONNX export
+# onnx-simplifier>=0.4.10  # ONNX simplifier
+# nvidia-pyindex  # TensorRT export
+# nvidia-tensorrt  # TensorRT export
 
 # I had to add these --------------------------------------
 yacs>=0.1.8

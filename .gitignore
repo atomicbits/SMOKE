@@ -10,3 +10,5 @@ csrc_tmp
 
 models/*
 !models/README*.*
+.Trash*
+.ipynb_checkpoints

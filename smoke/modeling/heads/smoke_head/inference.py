@@ -36,7 +36,15 @@ class PostProcessor(nn.Module):
         pred_heatmap, pred_regression = predictions[0], predictions[1]
         batch = pred_heatmap.shape[0]
 
-        target_varibales = self.prepare_targets(targets)
+        # Exchanged the one line of code below with the 4 thereunder to pass the code when targets is None. 
+        # Mind that it then fails later, but after we print out the results for visual inspection.
+        #
+        # target_varibales = self.prepare_targets(targets)
+        if targets is not None:
+            target_varibales = self.prepare_targets(targets)
+        else:
+            target_varibales = {"K": torch.tensor([[0.1, 0.1], [0.1, 0.1]]), "trans_mat": torch.tensor([[0.1, 0.1], [0.1, 0.1]])} # random tensors, not even in the correct dimension yet 
+
 
         heatmap = nms_hm(pred_heatmap)
 
@@ -56,6 +64,18 @@ class PostProcessor(nn.Module):
         pred_proj_offsets = pred_regression_pois[:, 1:3]
         pred_dimensions_offsets = pred_regression_pois[:, 3:6]
         pred_orientation = pred_regression_pois[:, 6:]
+
+        # Added some printing of results for visual inspection
+        print("- - - - - - - - -")
+        print(f"projected points, size {pred_proj_points.size()}:")
+        print(f"{pred_proj_points}")
+        print("- - - - - - - - -")
+        print(f"point offsets, size {pred_proj_offsets.size()}: ")
+        print(f"{pred_proj_offsets}")
+        print("- - - - - - - - -")
+        print(f"scores, size {scores.size()}: ")
+        print(f"{scores}")
+        print("- - - - - - - - -")
 
         pred_depths = self.smoke_coder.decode_depth(pred_depths_offset)
         pred_locations = self.smoke_coder.decode_location(

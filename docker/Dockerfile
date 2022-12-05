@@ -53,5 +53,6 @@ RUN pip install -r requirements.txt
 # can write the resulting library in that folder somewhere 
 RUN sudo chmod -R a+w /opt/conda/lib/python3.8  
 
+ENV JUPYTER_TOKEN=a51f25a8e663fba0fd8f3cd71ddbe0d4b593531f9122b40e
 # CMD ["bash"]
 CMD ["jupyter", "notebook", "--port=8888", "--ip=0.0.0.0", "--allow-root"]
